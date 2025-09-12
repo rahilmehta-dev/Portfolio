@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rahil Mehta — Portfolio</title>
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<header class="site-header">
+    <nav class="nav wrap">
+        <h1 class="logo">Rahil Mehta</h1>
+        <div class="spacer"></div>
+        <a class="btn" id="resumeBtn" href="#">↧ Resume</a>
+    </nav>
+</header>
+
+<main class="wrap">
+
+    <section id="about" class="section hero-bg">
+        <div class="overlay"></div>
+        <div class="about">
+            <h2 class="h2">Software Engineer specializing in .NET and Python.</h2>
+            <p class="muted">I enjoy building reliable systems, automating workflows, and designing clean UIs that just work. Lately, I’ve been diving into .NET alerting systems, CI/CD tutoring, and some ML-inspired projects.</p>
+            <div class="chips">
+                <span class="chip">.NET</span>
+                <span class="chip">Python</span>
+                <span class="chip">JavaScript</span>
+                <span class="chip">SQL</span><span class="chip">Docker</span><span class="chip">TensorFlow</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+        <p class="eyebrow">Work Experience</p>
+        <h2 class="h2">Here's my professional journey so far.</h2>
+        <div class="xp-layout">
+            <aside class="xp-list" id="xpList"></aside>
+            <article class="xp-detail card" id="xpDetail"></article>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+        <p class="eyebrow">Projects</p>
+        <h2 class="h2">Some things I've built recently.</h2>
+        <div class="xp-layout">
+            <aside class="xp-list" id="projList"></aside>
+            <article class="xp-detail card" id="projDetail"></article>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="paper" class="section">
+        <p class="eyebrow">Paper</p>
+        <h2 class="h2">Research & Publications</h2>
+
+        <div class="card paper-list">
+            <div class="paper-item">
+                <h3 class="paper-title">
+                    <i class="fa-solid fa-file-lines"></i>
+                    AIProbe: Uncovering Systemic and Environment Errors in Autonomous Systems Using Differential Testing
+                </h3>
+                <p class="muted">
+                    Published at AI Trustworthiness and Risk Assessment for Challenged Contexts (ATRACC)
+                </p>
+                <p class="muted">
+                    <strong>Co-authors:</strong> Yashwanthi Anand, Rahil P Mehta, Manish Motwani and Sandhya Saisubramanian
+                </p>
+                <div class="paper-links">
+                    <a href="" target="_blank" class="paper-link">
+                        <i class="fa-solid fa-file-pdf"></i> PDF
+                    </a>
+                    <a href="" target="_blank" class="paper-link">
+                        <i class="fa-solid fa-chalkboard"></i> Slides
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="section">
+        <p class="eyebrow">Contact</p>
+        <div class="card contact-icons">
+            <a href="mailto:Rahilmehta24@hotmail.com" class="contact-icon email" target="_blank">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/Mehta-Rahil" class="contact-icon linkedin" target="_blank" rel="noreferrer">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/Karma-Yogi-Rahil" class="contact-icon github" target="_blank" rel="noreferrer">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <span class="contact-icon location">
+      <i class="fa-solid fa-location-dot"></i>
+    </span>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© <span id="year"></span> Rahil Mehta</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
