@@ -7,64 +7,60 @@ if (resumeBtn) {
     resumeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         // Replace with your actual file path
-        window.location.href = 'Rahil_Mehta_Resume.pdf';
+        window.location.href = 'Resume.pdf';
     });
 }
 
 
 const experiences = [
     {
-        title: 'Software Engineer',
-        company: 'Nerve Solution',
-        period: 'Feb 2023 - Aug 2023',
+        title: 'Graduate Research Assistant',
+        company: 'Oregon State University',
+        period: 'May 2025 - Present',
         bullets: [
-            'Built a high-performance .NET alert engine handling 250k+ alerts/sec',
-            'Reduced client infrastructure costs by 33% through system optimization',
-            'Improved processing time by 25% with new alert delivery algorithms.',
-            'Implemented load balancing, failover, and monitoring tools (Slack + Email).',
-            'Developed a continuous backup utility with CSV + MongoDB for resilience.',
-
+            'Led development of Defects4REST (ICSE 2026), enabling reproducible deployment/testing of real-world REST API defects; containerized 16 services (buggy + patched) with Docker.',
+            'Ran 600+ hours of large-scale REST testing campaigns on an HPC cluster using Bash/Python with Schemathesis, RESTler, EvoMaster, and AutoRestTest, executing millions of requests.',
+            'Triaged failures and quantified results by mining logs/HAR/test reports to compare tool effectiveness.'
         ],
-        projects: ['User Alert Engine ', 'Backup & Monitoring Tool'],
-        tech: ['.NET core','MongoDB','Redis','SQL','Sockets' ,'CSV' ,'APIs: BSE (Bombay Stock Exchange), NSE (National Stock Exchange), Slack API']
+        projects: ['Defects4REST Benchmark', 'REST API Testing Campaigns'],
+        tech: ['Python','Bash','Docker','HPC','Schemathesis','RESTler','EvoMaster','AutoRestTest']
     },
     {
-        title: 'Programmer',
-        company: 'Acty System India (Indian branch of Acty System, Japan)',
-        period: 'May 2022 - November 2022',
-        bullets: [
-            'Built a console application to filter text file contents based on commands generated in XML.',
-            'Created a Windows application to read XML files and render real-time flicker-free 2D graphs with double buffering graphics.',
-            'Enabled graph customization: slopes, start/end points, grid, axis spacing, range, and tooltips — without external libraries.',
-            'Contributed to web application development: login, password reset, and CRUD pages using MVC pattern, MSSQL, and Entity Framework.'
-        ],
-        projects: ['XML Command Filter ','Real-Time Graph Rendering Too','Web Application (Admin & User Modules)'],
-        tech: ['.NET Framework','Windows Forms','MSSQL','Entity Framework','MVC Pattern']
-    },
-    {
-        title: 'AIProbe — Research',
-        company: 'Accepted at AAAI — ATRACC Symposium 2025',
-        period: 'May 2024 - July 2025',
-        bullets: [
-            'Designed and implemented a domain-agnostic environment and task generation system (XML-driven), with sampling algorithms for diverse state coverage.',
-            'Developed the instruction generation algorithm, allowing guided testing of multi-agent policies.',
-            'Created environment wrappers to integrate domains (ACAS Xu, Cooperative Navigation, Bipedal Walker, Flappy Bird, Lava) into the AIProbe pipeline.',
-            'Conducted and analyzed large-scale experiments, showing AIProbe’s ability to distinguish policy flaws vs. environment issues more effectively than baseline fuzzing methods.'
-        ],
-        projects: ['Domain-Agnostic Environment & Task Generation Pipeline','AIProbe Wrapper Framework','Instruction Generation Algorithm','Multi-Domain Experimental Evaluation'],
-        tech: ['.NET','Python','Reinforcement Learning (PettingZoo, PPO, SB3, Box2D)']
-    },
-
-    {
-        title: 'Graduate Teaching assistant',
-        company: 'Oregon State University · Corvallis, USA',
+        title: 'Graduate Teaching Assistant',
+        company: 'Oregon State University',
         period: 'Sept 2024 - Present',
         bullets: [
-            'Graded assignments for Software Engineering II (CS362) with strict rubric adherence and fairness.',
-            'Assisted students during office hours with CI/CD workflows, code reviews, and debugging practices.'
+            'Grade assignments with strict adherence to the rubric, maintaining fairness and consistency for all students.',
+            'Mentor students on CI/CD workflows, code reviews, and debugging during weekly office hours, helping them deliver more reliable projects.'
         ],
-        projects: ['CS362 Assignment Grading & Feedback System','Student Support (CI/CD, Code Review, Debugging)'],
+        projects: ['CS362 Assignment Grading', 'Student Support (CI/CD, Code Review, Debugging)'],
         tech: ['Git/GitHub','CI/CD Tools','Code Review Practices','Debugging']
+    },
+    {
+        title: 'Software Engineer',
+        company: 'Nerve Solutions (Startup)',
+        period: 'Feb 2023 - Aug 2023',
+        bullets: [
+            'Designed and implemented a high-throughput .NET alert engine processing 250K+ alerts/second, incorporating user preferences, alert priority, and system load.',
+            'Cut infrastructure costs by 33% by replacing legacy alert routing logic with a more CPU- and memory-efficient algorithm.',
+            'Improved system scalability and reliability by adding load balancing, structured logging, and automatic failover.',
+            'Built a continuous backup pipeline and a real-time monitoring tool with Slack and email alerts, reducing MTTR by 50%.'
+        ],
+        projects: ['User Alert Engine', 'Backup & Monitoring Tool'],
+        tech: ['.NET Core','MongoDB','Redis','SQL','Sockets','CSV','APIs: BSE, NSE, Slack']
+    },
+
+    {
+        title: 'Programmer',
+        company: 'Acty System India (Subsidiary of Acty System Japan)',
+        period: 'May 2022 - Nov 2022',
+        bullets: [
+            'Built a console application to filter large text files using dynamically generated commands parsed from XML configurations.',
+            'Developed a Windows application for real-time, flicker-free 2D graphing with customizable features using double buffering and no external libraries.',
+            'Implemented core modules (login, password reset, CRUD operations) for an internal Employee Management System, improving accessibility and data management.'
+        ],
+        projects: ['XML Command Filter', 'Real-Time Graph Rendering Tool', 'Employee Management System'],
+        tech: ['.NET Framework','Windows Forms','MSSQL','Entity Framework','MVC Pattern']
     }
 ];
 
