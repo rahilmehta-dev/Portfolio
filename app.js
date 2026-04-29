@@ -105,6 +105,34 @@ selectXP(0);
 
 const projects = [
     {
+        title: 'ScrollTone',
+        company: 'Self-Hosted Audiobook Converter',
+        period: '2025',
+        github: 'https://github.com/rahilmehta-dev/ScrollTone',
+        bullets: [
+            'Built a self-hosted web app that converts EPUB books into audiobooks using Kokoro-82M TTS — runs entirely in Docker and accessible from any device on your network.',
+            'Supports 19 voices with American/British accents, speed control (0.5×–2.5×), and parallel processing with 1–4 worker threads per book.',
+            'Added optional multi-voice speaker attribution via local LLM (Ollama) to automatically assign character voices.',
+            'Outputs WAV or MP3 with embedded metadata; includes audio enhancement with compression and EQ filters.',
+            'Real-time chapter progress tracking via Server-Sent Events and batch conversion of multiple EPUBs.'
+        ],
+        tech: ['Python','JavaScript','Docker','PyTorch','spaCy','ffmpeg','Ollama']
+    },
+    {
+        title: 'ShowUp',
+        company: 'iOS Habit Tracker · Vibe Code Project',
+        period: '2025',
+        github: 'https://github.com/rahilmehta-dev/ShowUp',
+        bullets: [
+            'Vibe-coded an iOS 17+ habit tracker that auto-completes tasks using CoreLocation geofencing — tasks only complete when you physically show up and stay.',
+            'Zero manual input: geofence entry + time elapsed triggers completion with real-time progress rings via TimelineView.',
+            'Dynamic Island and Lock Screen widgets show live progress using ActivityKit + WidgetKit.',
+            'Streak tracking, customizable weekly schedules, grace-period buffer, and milestone notifications.',
+            'Built with SwiftUI + SwiftData + MVVM architecture using @Observable.'
+        ],
+        tech: ['SwiftUI','SwiftData','CoreLocation','ActivityKit','WidgetKit','MapKit','MVVM']
+    },
+    {
 
         title: 'RAGucation',
         company: 'Retrieval-Augmented Generation Tool',
@@ -181,6 +209,7 @@ function selectProj(i){
     <p class="eyebrow">Details:</p>
     <ul class="tight">${p.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
     ${p.tech?.length ? `<p class='eyebrow'>Technologies:</p><div class='techs'>${p.tech.map(t=>`<span class='tech'>${t}</span>`).join('')}</div>`:''}
+    ${p.github ? `<div class="paper-links" style="margin-top:1rem"><a href="${p.github}" target="_blank" class="paper-link" rel="noreferrer"><i class="fa-brands fa-github"></i> View on GitHub</a></div>` : ''}
   `;
 }
 
