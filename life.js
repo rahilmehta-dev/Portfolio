@@ -14,10 +14,12 @@ function renderPhotoGrid(items, containerId, icon, emptyText) {
         el.innerHTML = `<div class="life-empty"><i class="fa-solid ${icon}"></i><span>${emptyText}</span></div>`;
         return;
     }
-    el.innerHTML = `<div class="photo-grid">${items.map(p => `
-        <div class="photo-card">
-            <img src="${p.src}" alt="${p.caption || ''}" loading="lazy">
-            ${p.caption ? `<div class="photo-caption">${p.caption}</div>` : ''}
+    el.innerHTML = `<div class="neu-photo-grid">${items.map(p => `
+        <div class="neu-photo-card">
+            <div class="neu-photo-inner">
+                <img src="${p.src}" alt="${p.caption || ''}" loading="lazy">
+            </div>
+            ${p.caption ? `<p class="neu-photo-caption">${p.caption}</p>` : ''}
         </div>`).join('')}</div>`;
 }
 

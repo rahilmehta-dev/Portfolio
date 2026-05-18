@@ -607,6 +607,54 @@ ul.tight { margin: 8px 0 0 20px; }
 
 .life-empty i { font-size: 36px; opacity: .35; }
 
+/* ── Neumorphic photo cards (life page) ── */
+.neu-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 18px;
+}
+
+.neu-photo-card {
+    background: var(--panel);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.8);
+    box-shadow: 7px 7px 16px rgba(47,51,61,.14), -7px -7px 16px rgba(255,255,255,.88);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.neu-photo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 10px 10px 22px rgba(47,51,61,.18), -10px -10px 22px rgba(255,255,255,.92);
+}
+
+.neu-photo-inner {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 3px 3px 8px rgba(47,51,61,.16), inset -3px -3px 8px rgba(255,255,255,.9);
+}
+
+.neu-photo-inner img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    transition: transform .3s ease;
+}
+
+.neu-photo-card:hover .neu-photo-inner img { transform: scale(1.04); }
+
+.neu-photo-caption {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin: 0;
+    line-height: 1.3;
+}
+
 /* ── Book grid ── */
 .book-grid {
     display: grid;
