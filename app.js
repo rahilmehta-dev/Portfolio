@@ -14,35 +14,37 @@ if (resumeBtn) {
 
 const experiences = [
     {
-        title: 'Graduate Teaching Assistant — CS 362: Software Testing',
+        title: 'Graduate Research Assistant',
         company: 'Oregon State University',
-        period: 'Sept 2024 – March 2026',
+        period: 'May 2025 – Present',
         bullets: [
-            'Graded mutation testing and coverage assignments for 100+ students.',
-            'Held office hours and provided written feedback on test quality.'
+            'Led development of Defects4REST (ICSE\'26), enabling reproducible deployment/testing of real-world REST API defects; containerized 16 services (buggy + patched) with Docker.',
+            'Ran 600+ hours of large-scale REST testing campaigns on an HPC cluster using Bash/Python with Schemathesis, RESTler, EvoMaster, and AutoRestTest, executing millions of requests.',
+            'Triaged failures and quantified results by mining logs/HAR/test reports to compare tool effectiveness.'
         ],
-        tech: ['Software Testing', 'Mutation Testing', 'Code Coverage', 'CI/CD']
+        tech: ['Python', 'Bash', 'Docker', 'HPC', 'Schemathesis', 'RESTler', 'EvoMaster', 'AutoRestTest']
     },
     {
-        title: 'Research Assistant — ANSWER Lab',
+        title: 'Graduate Teaching Assistant',
         company: 'Oregon State University',
-        period: 'Jan 2024 – March 2026',
+        period: 'Sept 2024 – Present',
         bullets: [
-            'First author on Defects4REST (ICSE 2026): built a benchmark of 110 real-world REST API defects across 12 open-source projects.',
-            'Ran 600+ hours of HPC test campaigns evaluating Schemathesis, EvoMaster, AutoRestTest, and RestTestGen.',
-            'Co-first author on differential testing paper for autonomous systems (AAAI Fall Symposium 2025).'
+            'Graded assignments with strict adherence to the rubric, maintaining fairness and consistency for all students.',
+            'Mentored students on CI/CD workflows, code reviews, and debugging during weekly office hours, helping them deliver more reliable projects.'
         ],
-        tech: ['Python', 'Docker', 'HPC', 'REST APIs', 'Schemathesis', 'EvoMaster', 'AutoRestTest', 'RestTestGen']
+        tech: ['Git', 'GitHub', 'CI/CD', 'Code Review', 'Debugging']
     },
     {
-        title: 'Backend Engineer',
-        company: 'Nerve Solutions',
-        period: '2022 – 2023',
+        title: 'Software Engineer',
+        company: 'Nerve Solutions (Startup)',
+        period: 'Feb 2023 – Aug 2023',
         bullets: [
-            'Built a high-throughput alert engine for Kotak Neo handling real-time trade notifications.',
-            'Stack: C#, REST APIs, SQL.'
+            'Designed and implemented a high-throughput .NET alert engine processing 250K+ alerts/second, incorporating user preferences, alert priority, and system load.',
+            'Cut infrastructure costs by 33% by replacing the legacy alert routing logic with a more CPU- and memory-efficient algorithm.',
+            'Improved system scalability and reliability by adding load balancing, structured logging, and automatic failover.',
+            'Built a continuous backup pipeline and a real-time monitoring tool with Slack and email alerts, reducing MTTR by 50%.'
         ],
-        tech: ['C#', 'REST APIs', 'SQL']
+        tech: ['.NET', 'C#', 'SQL', 'MongoDB', 'REST APIs', 'Slack API']
     }
 ];
 
