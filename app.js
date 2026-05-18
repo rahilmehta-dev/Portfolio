@@ -7,60 +7,42 @@ if (resumeBtn) {
     resumeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         // Replace with your actual file path
-        window.location.href = 'Resume.pdf';
+        window.location.href = '/documents/resume.pdf';
     });
 }
 
 
 const experiences = [
     {
-        title: 'Graduate Research Assistant',
+        title: 'Graduate Teaching Assistant — CS 362: Software Testing',
         company: 'Oregon State University',
-        period: 'May 2025 - Present',
+        period: 'Sept 2024 – March 2026',
         bullets: [
-            'Led development of Defects4REST (ICSE 2026), enabling reproducible deployment/testing of real-world REST API defects; containerized 16 services (buggy + patched) with Docker.',
-            'Ran 600+ hours of large-scale REST testing campaigns on an HPC cluster using Bash/Python with Schemathesis, RESTler, EvoMaster, and AutoRestTest, executing millions of requests.',
-            'Triaged failures and quantified results by mining logs/HAR/test reports to compare tool effectiveness.'
+            'Graded mutation testing and coverage assignments for 100+ students.',
+            'Held office hours and provided written feedback on test quality.'
         ],
-        projects: ['Defects4REST Benchmark', 'REST API Testing Campaigns'],
-        tech: ['Python','Bash','Docker','HPC','Schemathesis','RESTler','EvoMaster','AutoRestTest']
+        tech: ['Software Testing', 'Mutation Testing', 'Code Coverage', 'CI/CD']
     },
     {
-        title: 'Graduate Teaching Assistant',
+        title: 'Research Assistant — ANSWER Lab',
         company: 'Oregon State University',
-        period: 'Sept 2024 - Present',
+        period: 'Jan 2024 – March 2026',
         bullets: [
-            'Grade assignments with strict adherence to the rubric, maintaining fairness and consistency for all students.',
-            'Mentor students on CI/CD workflows, code reviews, and debugging during weekly office hours, helping them deliver more reliable projects.'
+            'First author on Defects4REST (ICSE 2026): built a benchmark of 110 real-world REST API defects across 12 open-source projects.',
+            'Ran 600+ hours of HPC test campaigns evaluating Schemathesis, EvoMaster, AutoRestTest, and RestTestGen.',
+            'Co-first author on differential testing paper for autonomous systems (AAAI Fall Symposium 2025).'
         ],
-        projects: ['CS362 Assignment Grading', 'Student Support (CI/CD, Code Review, Debugging)'],
-        tech: ['Git/GitHub','CI/CD Tools','Code Review Practices','Debugging']
+        tech: ['Python', 'Docker', 'HPC', 'REST APIs', 'Schemathesis', 'EvoMaster', 'AutoRestTest', 'RestTestGen']
     },
     {
-        title: 'Software Engineer',
-        company: 'Nerve Solutions (Startup)',
-        period: 'Feb 2023 - Aug 2023',
+        title: 'Backend Engineer',
+        company: 'Nerve Solutions',
+        period: '2022 – 2023',
         bullets: [
-            'Designed and implemented a high-throughput .NET alert engine processing 250K+ alerts/second, incorporating user preferences, alert priority, and system load.',
-            'Cut infrastructure costs by 33% by replacing legacy alert routing logic with a more CPU- and memory-efficient algorithm.',
-            'Improved system scalability and reliability by adding load balancing, structured logging, and automatic failover.',
-            'Built a continuous backup pipeline and a real-time monitoring tool with Slack and email alerts, reducing MTTR by 50%.'
+            'Built a high-throughput alert engine for Kotak Neo handling real-time trade notifications.',
+            'Stack: C#, REST APIs, SQL.'
         ],
-        projects: ['User Alert Engine', 'Backup & Monitoring Tool'],
-        tech: ['.NET Core','MongoDB','Redis','SQL','Sockets','CSV','APIs: BSE, NSE, Slack']
-    },
-
-    {
-        title: 'Programmer',
-        company: 'Acty System India (Subsidiary of Acty System Japan)',
-        period: 'May 2022 - Nov 2022',
-        bullets: [
-            'Built a console application to filter large text files using dynamically generated commands parsed from XML configurations.',
-            'Developed a Windows application for real-time, flicker-free 2D graphing with customizable features using double buffering and no external libraries.',
-            'Implemented core modules (login, password reset, CRUD operations) for an internal Employee Management System, improving accessibility and data management.'
-        ],
-        projects: ['XML Command Filter', 'Real-Time Graph Rendering Tool', 'Employee Management System'],
-        tech: ['.NET Framework','Windows Forms','MSSQL','Entity Framework','MVC Pattern']
+        tech: ['C#', 'REST APIs', 'SQL']
     }
 ];
 
@@ -106,80 +88,55 @@ selectXP(0);
 const projects = [
     {
         title: 'ScrollTone',
-        company: 'Self-Hosted Audiobook Converter',
+        company: 'Self-hosted EPUB to audiobook converter',
         period: '2025',
         github: 'https://github.com/rahilmehta-dev/ScrollTone',
+        live: 'https://rahilmehta-dev.github.io/ScrollTone/',
         bullets: [
-            'Built a self-hosted web app that converts EPUB books into audiobooks using Kokoro-82M TTS — runs entirely in Docker and accessible from any device on your network.',
-            'Supports 19 voices with American/British accents, speed control (0.5×–2.5×), and parallel processing with 1–4 worker threads per book.',
-            'Added optional multi-voice speaker attribution via local LLM (Ollama) to automatically assign character voices.',
-            'Outputs WAV or MP3 with embedded metadata; includes audio enhancement with compression and EQ filters.',
-            'Real-time chapter progress tracking via Server-Sent Events and batch conversion of multiple EPUBs.'
+            '19 voices, multi-character speaker attribution via local LLM, runs entirely in Docker.'
         ],
-        tech: ['Python','JavaScript','Docker','PyTorch','spaCy','ffmpeg','Ollama']
+        tech: ['Python', 'FastAPI', 'Kokoro TTS', 'Ollama', 'Docker']
     },
     {
         title: 'ShowUp',
-        company: 'iOS Habit Tracker · Vibe Code Project',
+        company: 'iOS habit tracker',
         period: '2025',
         github: 'https://github.com/rahilmehta-dev/ShowUp',
         bullets: [
-            'Vibe-coded an iOS 17+ habit tracker that auto-completes tasks using CoreLocation geofencing — tasks only complete when you physically show up and stay.',
-            'Zero manual input: geofence entry + time elapsed triggers completion with real-time progress rings via TimelineView.',
-            'Dynamic Island and Lock Screen widgets show live progress using ActivityKit + WidgetKit.',
-            'Streak tracking, customizable weekly schedules, grace-period buffer, and milestone notifications.',
-            'Built with SwiftUI + SwiftData + MVVM architecture using @Observable.'
+            'Auto-completes tasks when you physically show up and stay — geofencing, Live Activity on Dynamic Island, zero manual input.'
         ],
-        tech: ['SwiftUI','SwiftData','CoreLocation','ActivityKit','WidgetKit','MapKit','MVVM']
+        tech: ['Swift', 'SwiftUI', 'CoreLocation', 'ActivityKit', 'SwiftData']
     },
     {
-
-        title: 'RAGucation',
-        company: 'Retrieval-Augmented Generation Tool',
+        title: 'FocusFeed',
+        company: 'YouTube pre-filter for Apple Silicon',
         period: '2025',
+        github: 'https://github.com/rahilmehta-dev/FocusFeed',
         bullets: [
-            'Built a RAG pipeline to answer natural-language questions from PDFs and CSVs.',
-            'Integrated ChromaDB for vector storage and Sentence Transformers for embeddings.',
-            'Deployed a Streamlit interface for file upload, chunking, and interactive querying.',
-            'Added support for top-k retrieval and configurable chunk sizes.'
+            'Pick a mood, local MLX vision model scores the top 10 videos before you watch any of them.'
         ],
-        tech: ['Python','Streamlit','ChromaDB','Ollama (local LLM)','Sentence Transformers']
+        tech: ['Python', 'FastAPI', 'MLX', 'SSE', 'Apple Silicon']
     },
-
-
     {
-        title: 'MotiMate',
-        company: 'Automation Tool',
+        title: 'mornin-cli',
+        company: 'CLI morning standup generator',
         period: '2025',
+        github: 'https://github.com/rahilmehta-dev/mornin-cli',
         bullets: [
-            'Developed an automation system that generates and uploads daily motivational Instagram Reels.',
-            'Integrated AI-generated quotes with dynamic Pexels video backgrounds and adaptive typography styles.',
-            'Used Ollama to run local LLMs for offline/private quote generation.',
-            'Designed the workflow to be fully hands-free, with automatic captioning and scheduling.',
-            'Containerized with Docker for reproducibility and easy deployment on different machines.',
-            'Leveraged instagrapi for Instagram automation (login, upload, and publish).'
+            'Generates a morning standup from your git commits using a local LLM — no cloud, no accounts.'
         ],
-        tech: ['Python','Docker','instagrapi','Ollama','Pexels API']
+        tech: ['Python', 'Ollama', 'CLI']
     },
     {
-        title: 'Assistive Vision',
-        company: 'Android ML App',
-        period: '2022',
+        title: 'Defects4REST',
+        company: 'REST API defect benchmark',
+        period: '2025',
+        github: 'https://github.com/ANSWER-OSU/Defects4REST',
         bullets: [
-            'Offline image captioning, cloth detection (~90% accuracy), currency calculator (~85%).',
-            'TensorFlow model in ~110 MB package.'
+            'Benchmark of 110 real-world REST API defects across 12 open-source projects.',
+            'Single-command Docker deployment per defect, used in ICSE 2026 paper.'
         ],
-        tech: ['TensorFlow','Android','Java']
-    },
-    {
-        title: 'IntraChat',
-        company: 'LAN Messaging App',
-        period: '2021',
-        bullets: [
-            'Instant messaging over sockets with a lightweight custom protocol.',
-            'Built in C# with minimal UI.'
-        ],
-        tech: ['C#','Sockets']
+        tech: ['Python', 'Docker', 'REST APIs', 'OpenAPI']
     }
 ];
 
@@ -209,9 +166,108 @@ function selectProj(i){
     <p class="eyebrow">Details:</p>
     <ul class="tight">${p.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
     ${p.tech?.length ? `<p class='eyebrow'>Technologies:</p><div class='techs'>${p.tech.map(t=>`<span class='tech'>${t}</span>`).join('')}</div>`:''}
-    ${p.github ? `<div class="paper-links" style="margin-top:1rem"><a href="${p.github}" target="_blank" class="paper-link" rel="noreferrer"><i class="fa-brands fa-github"></i> View on GitHub</a></div>` : ''}
+    ${(p.github || p.live) ? `<div class="paper-links" style="margin-top:1rem">${p.github ? `<a href="${p.github}" target="_blank" class="paper-link" rel="noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>` : ''}${p.live ? `<a href="${p.live}" target="_blank" class="paper-link" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site</a>` : ''}</div>` : ''}
   `;
 }
 
 renderProjList();
 selectProj(0);
+
+// ── Life & Interests ──
+
+// Add your photos here: { src: 'img/your-photo.jpg', caption: 'Caption' }
+const photos = [
+
+];
+
+// Add your certificates here: { name: 'Cert Name', issuer: 'Issuer', date: 'Month Year', img: 'img/cert.jpg', url: 'https://...' }
+const certificates = [
+
+];
+
+// Add / edit your inspirations here
+const inspirations = [
+    {
+        name: 'Donald Knuth',
+        role: 'Computer Scientist & Author, The Art of Computer Programming',
+        quote: 'Premature optimization is the root of all evil.',
+        icon: '📚'
+    },
+    {
+        name: 'Grace Hopper',
+        role: 'Pioneer Programmer & Admiral, U.S. Navy',
+        quote: "It's easier to ask forgiveness than it is to get permission.",
+        icon: '⚓'
+    },
+    {
+        name: 'Linus Torvalds',
+        role: 'Creator of Linux & Git',
+        quote: 'Talk is cheap. Show me the code.',
+        icon: '🐧'
+    }
+];
+
+function renderPhotos() {
+    const el = document.getElementById('tab-photos');
+    if (!photos.length) {
+        el.innerHTML = `<div class="life-empty"><i class="fa-solid fa-camera"></i><span>Drop photos in <code>img/</code> and add them to the <code>photos</code> array in app.js</span></div>`;
+        return;
+    }
+    el.innerHTML = `<div class="photo-grid">${photos.map(p => `
+        <div class="photo-card">
+            <img src="${p.src}" alt="${p.caption || ''}">
+            ${p.caption ? `<div class="photo-caption">${p.caption}</div>` : ''}
+        </div>`).join('')}</div>`;
+}
+
+function renderCerts() {
+    const el = document.getElementById('tab-certs');
+    if (!certificates.length) {
+        el.innerHTML = `<div class="life-empty"><i class="fa-solid fa-certificate"></i><span>Add your certificates to the <code>certificates</code> array in app.js</span></div>`;
+        return;
+    }
+    el.innerHTML = `<div class="cert-grid">${certificates.map(c => `
+        <div class="cert-card">
+            ${c.img
+                ? `<img class="cert-thumb" src="${c.img}" alt="${c.name}">`
+                : `<div class="cert-thumb-placeholder"><i class="fa-solid fa-certificate"></i></div>`}
+            <p class="cert-name">${c.name}</p>
+            <p class="cert-issuer">${c.issuer}</p>
+            <p class="cert-date">${c.date}</p>
+            ${c.url ? `<a class="cert-link" href="${c.url}" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> View credential</a>` : ''}
+        </div>`).join('')}</div>`;
+}
+
+function renderInspo() {
+    const el = document.getElementById('tab-inspo');
+    if (!inspirations.length) {
+        el.innerHTML = `<div class="life-empty"><i class="fa-solid fa-star"></i><span>Add inspirations to the <code>inspirations</code> array in app.js</span></div>`;
+        return;
+    }
+    el.innerHTML = `<div class="inspo-grid">${inspirations.map(p => `
+        <div class="inspo-card">
+            <p class="inspo-quote">${p.quote}</p>
+            <div class="inspo-person">
+                ${p.img
+                    ? `<img class="inspo-avatar" src="${p.img}" alt="${p.name}">`
+                    : `<div class="inspo-avatar-placeholder">${p.icon || '✦'}</div>`}
+                <div class="inspo-info">
+                    <p class="inspo-name">${p.name}</p>
+                    <p class="inspo-role">${p.role}</p>
+                </div>
+            </div>
+        </div>`).join('')}</div>`;
+}
+
+renderPhotos();
+renderCerts();
+renderInspo();
+
+document.querySelectorAll('.life-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.life-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.life-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+});

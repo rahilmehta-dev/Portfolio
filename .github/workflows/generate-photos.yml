@@ -1,0 +1,19 @@
+name: Update photos manifest
+
+on:
+  push:
+    paths:
+      - 'capture_photos/**'
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: node generate-photos.js
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: update photos manifest'
+          file_pattern: photos-manifest.json

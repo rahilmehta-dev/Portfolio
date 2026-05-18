@@ -12,8 +12,9 @@
 <header class="site-header">
     <nav class="nav wrap">
         <h1 class="logo">Rahil Mehta</h1>
+        <a href="life.html">Life & Interests</a>
         <div class="spacer"></div>
-        <a class="btn" id="resumeBtn" href="#">↧ Resume</a>
+        <a class="btn" id="resumeBtn" href="/documents/resume.pdf">↧ Resume</a>
     </nav>
 </header>
 
@@ -52,6 +53,55 @@
         <div class="xp-layout">
             <aside class="xp-list" id="projList"></aside>
             <article class="xp-detail card" id="projDetail"></article>
+        </div>
+    </section>
+
+    <!-- Open Source Contributions -->
+    <section id="oss" class="section">
+        <p class="eyebrow">Open Source Contributions</p>
+        <h2 class="h2">Bugs reported in REST API testing tools during Defects4REST evaluation.</h2>
+        <div class="card oss-table-wrap">
+            <table class="oss-table">
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Issue</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://github.com/schemathesis/schemathesis" target="_blank" rel="noreferrer" class="paper-link">Schemathesis</a></td>
+                        <td><a href="https://github.com/schemathesis/schemathesis/issues/3377" target="_blank" rel="noreferrer" class="paper-link">KeyError: 'operationId' internal crash during stateful link resolution on OpenAPI 3.1.0 specs</a></td>
+                        <td><span class="status-badge status-fixed">Fixed</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/selab-gatech/autoresttest" target="_blank" rel="noreferrer" class="paper-link">AutoRestTest</a></td>
+                        <td><a href="https://github.com/selab-gatech/autoresttest/issues/34" target="_blank" rel="noreferrer" class="paper-link">KeyError: 'application/xml' crash in mutate_values on converted specs</a></td>
+                        <td><span class="status-badge status-fixed">Fixed</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/selab-gatech/autoresttest" target="_blank" rel="noreferrer" class="paper-link">AutoRestTest</a></td>
+                        <td><a href="https://github.com/selab-gatech/autoresttest/issues/36" target="_blank" rel="noreferrer" class="paper-link">Graph init hangs indefinitely on large specs</a></td>
+                        <td><span class="status-badge status-acknowledged">Acknowledged</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/selab-gatech/autoresttest" target="_blank" rel="noreferrer" class="paper-link">AutoRestTest</a></td>
+                        <td><a href="https://github.com/selab-gatech/autoresttest/issues/31" target="_blank" rel="noreferrer" class="paper-link">Value table generation stuck 1hr+ with no output on Podman spec</a></td>
+                        <td><span class="status-badge status-acknowledged">Acknowledged</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/selab-gatech/autoresttest" target="_blank" rel="noreferrer" class="paper-link">AutoRestTest</a></td>
+                        <td><a href="https://github.com/selab-gatech/autoresttest/issues/30" target="_blank" rel="noreferrer" class="paper-link">No support for custom API key headers</a></td>
+                        <td><span class="status-badge status-feature">Feature added</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/WebFuzzing/EvoMaster" target="_blank" rel="noreferrer" class="paper-link">EvoMaster</a></td>
+                        <td><a href="https://github.com/WebFuzzing/EvoMaster/issues/1400" target="_blank" rel="noreferrer" class="paper-link">IllegalArgumentException crash during Dolibarr API testing</a></td>
+                        <td><span class="status-badge status-reported">Reported</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
