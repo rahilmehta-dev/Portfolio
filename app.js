@@ -45,6 +45,17 @@ const experiences = [
             'Built a continuous backup pipeline and a real-time monitoring tool with Slack and email alerts, reducing MTTR by 50%.'
         ],
         tech: ['.NET', 'C#', 'SQL', 'MongoDB', 'REST APIs', 'Slack API']
+    },
+    {
+        title: 'Programmer',
+        company: 'Acty System India (Subsidiary of Acty System Japan)',
+        period: 'May 2022 – Nov 2022',
+        bullets: [
+            'Built a console application to filter large text files using dynamically generated commands parsed from XML configurations.',
+            'Developed a Windows application for real-time, flicker-free 2D graphing with customizable features (slopes, ranges, grid, tooltips) using double buffering and no external libraries.',
+            'Implemented core modules (login, password reset, CRUD operations) for an internal Employee Management System, improving accessibility and data management for HR and admin staff.'
+        ],
+        tech: ['.NET Framework', 'Windows Forms', 'MSSQL', 'Entity Framework', 'C#']
     }
 ];
 
