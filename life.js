@@ -1,11 +1,5 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ── Drawing & Illustration ────────────────────────────────────────────────────
-// Add entries: { src: 'path/to/file.jpg', caption: 'Title or description' }
-const drawings = [
-
-];
-
 // ── Renderers ─────────────────────────────────────────────────────────────────
 
 function renderPhotoGrid(items, containerId, icon, emptyText) {
@@ -29,4 +23,3 @@ fetch('photos-manifest.json')
     .then(photos => renderPhotoGrid(photos, 'photos-grid', 'fa-camera', 'Add photos to capture_photos/ and push to GitHub'))
     .catch(() => renderPhotoGrid([], 'photos-grid', 'fa-camera', 'Add photos to capture_photos/ and push to GitHub'));
 
-renderPhotoGrid(drawings, 'drawings-grid', 'fa-pen-nib', 'Add drawings to the <code>drawings</code> array in life.js');
