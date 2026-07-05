@@ -1,173 +1,391 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Rahil Mehta — Portfolio</title>
-    <meta name="color-scheme" content="light" />
-    <link rel="stylesheet" href="styles.css?v=2" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rahil Mehta — Portfolio</title>
+  <meta name="description" content="Rahil Mehta — Software Engineer specializing in backend systems, REST API testing, and research infrastructure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header class="site-header">
-    <nav class="nav wrap">
-        <h1 class="logo">Rahil Mehta</h1>
-<div class="spacer"></div>
-        <a class="btn" id="resumeBtn" href="/documents/resume.pdf">↧ Resume</a>
-    </nav>
-</header>
+<div class="ide-root">
 
-<main class="wrap">
+  <!-- ── Title Bar ── -->
+  <header class="title-bar">
+    <div class="traffic-lights">
+      <span class="dot dot-red"></span>
+      <span class="dot dot-yellow"></span>
+      <span class="dot dot-green"></span>
+    </div>
+    <div class="tab-bar" id="tabBar">
+      <button class="tab active" data-section="hero"><span class="tab-badge ts">TS</span>main.ts</button>
+      <button class="tab" data-section="about"><span class="tab-badge md">MD</span>about.md</button>
+      <button class="tab" data-section="skills"><span class="tab-badge json">{}</span>skills.json</button>
+      <button class="tab" data-section="experience"><span class="tab-badge git">GIT</span>experience.git</button>
+      <button class="tab" data-section="projects"><span class="tab-badge dir">DIR</span>projects/</button>
+      <button class="tab" data-section="oss"><span class="tab-badge ts">TS</span>contributions.ts</button>
+      <button class="tab" data-section="publications"><span class="tab-badge md">MD</span>publications.md</button>
+      <button class="tab" data-section="snapshots"><span class="tab-badge dir">RAW</span>snapshots/</button>
+      <button class="tab" data-section="contact"><span class="tab-badge json">{}</span>contact.json</button>
+    </div>
+    <div class="title-bar-end">
+      <a href="documents/resume.pdf" class="resume-btn" target="_blank" rel="noreferrer">
+        <i class="fa-solid fa-file-arrow-down"></i> Resume.pdf
+      </a>
+    </div>
+  </header>
 
-    <section id="about" class="section hero-bg">
-        <div class="overlay"></div>
-        <div class="about">
-            <h2 class="h2">Software Engineer focused on backend systems, automation, and REST platforms.</h2>
-            <p class="muted">I build reliable services, scale automation workflows, and ship reproducible testing infrastructure. Recently, I’ve been leading large-scale REST API defect benchmarking and research on autonomous system testing.</p>
-            <div class="chips">
-                <span class="chip">C#</span>
-                <span class="chip">Python</span>
-                <span class="chip">SQL</span>
-                <span class="chip">Docker</span>
-                <span class="chip">REST APIs</span>
-                <span class="chip">CI/CD</span>
+  <!-- ── Workspace ── -->
+  <div class="workspace">
+
+    <!-- Mobile sidebar toggle -->
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle file explorer">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- ── Sidebar / File Explorer ── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-title">EXPLORER</span>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">×</button>
+      </div>
+      <nav class="file-tree" id="fileTree">
+        <div class="tree-folder-row">
+          <span class="tree-arrow">▾</span>
+          <span class="tree-folder-name">RAHILMEHTA-DEV</span>
+        </div>
+        <div class="tree-items">
+          <div class="tree-item active" data-section="hero">
+            <span class="tree-indent"></span>
+            <span class="file-badge ts">TS</span>
+            <span class="tree-label">main.ts</span>
+          </div>
+          <div class="tree-item" data-section="about">
+            <span class="tree-indent"></span>
+            <span class="file-badge md">MD</span>
+            <span class="tree-label">about.md</span>
+          </div>
+          <div class="tree-item" data-section="skills">
+            <span class="tree-indent"></span>
+            <span class="file-badge json">{}</span>
+            <span class="tree-label">skills.json</span>
+          </div>
+          <div class="tree-item" data-section="experience">
+            <span class="tree-indent"></span>
+            <span class="file-badge git">GIT</span>
+            <span class="tree-label">experience.git</span>
+          </div>
+          <div class="tree-subfolder-row">
+            <span class="tree-indent"></span>
+            <span class="tree-arrow">▾</span>
+            <i class="fa-solid fa-folder-open tree-folder-icon"></i>
+            <span class="tree-label">projects/</span>
+          </div>
+          <div class="tree-item tree-child" data-section="projects">
+            <span class="tree-indent tree-indent-2"></span>
+            <span class="file-badge ls">LS</span>
+            <span class="tree-label">index.ls</span>
+          </div>
+          <div class="tree-item" data-section="oss">
+            <span class="tree-indent"></span>
+            <span class="file-badge ts">TS</span>
+            <span class="tree-label">contributions.ts</span>
+          </div>
+          <div class="tree-item" data-section="publications">
+            <span class="tree-indent"></span>
+            <span class="file-badge md">MD</span>
+            <span class="tree-label">publications.md</span>
+          </div>
+          <div class="tree-item" data-section="snapshots">
+            <span class="tree-indent"></span>
+            <span class="file-badge raw">RAW</span>
+            <span class="tree-label">snapshots/</span>
+          </div>
+          <div class="tree-item" data-section="contact">
+            <span class="tree-indent"></span>
+            <span class="file-badge json">{}</span>
+            <span class="tree-label">contact.json</span>
+          </div>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <img src="" alt="" class="sidebar-avatar" id="sidebarAvatar" />
+        <div class="sidebar-footer-info">
+          <span class="sidebar-user">rahilmehta-dev</span>
+          <div class="git-branch-info">
+            <i class="fa-solid fa-code-branch"></i> main
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ── Editor Area ── -->
+    <main class="editor-area" id="editorArea">
+
+      <!-- ── HERO: main.ts ── -->
+      <section id="hero" class="section">
+        <div class="section-breadcrumb">
+          <span class="breadcrumb-sep">›</span> main.ts
+        </div>
+
+        <div class="terminal-boot" id="terminalBoot">
+          <div id="bootLines"></div>
+          <span class="cursor-block blink" id="bootCursor">▋</span>
+        </div>
+
+        <div class="hero-layout" id="heroContent" style="opacity:0;transform:translateY(16px)">
+          <div class="hero-left">
+            <div class="hero-avatar-wrap">
+              <img src="" alt="" class="hero-avatar" id="heroAvatar" />
+              <div class="hero-avatar-badge">
+                <span class="avatar-dot"></span> available
+              </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Experience -->
-    <section id="experience" class="section">
-        <p class="eyebrow">Work Experience</p>
-        <h2 class="h2">Here's my professional journey so far.</h2>
-        <div class="xp-layout">
-            <aside class="xp-list" id="xpList"></aside>
-            <article class="xp-detail card" id="xpDetail"></article>
-        </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="section">
-        <p class="eyebrow">Projects</p>
-        <h2 class="h2">Some things I've built recently.</h2>
-        <div class="xp-layout">
-            <aside class="xp-list" id="projList"></aside>
-            <article class="xp-detail card" id="projDetail"></article>
-        </div>
-    </section>
-
-    <!-- Open Source Contributions -->
-    <section id="oss" class="section">
-        <p class="eyebrow">Open Source Contributions</p>
-        <h2 class="h2">Bugs reported in REST API testing tools during Defects4REST evaluation.</h2>
-        <div class="card oss-table-wrap">
-            <table class="oss-table">
-                <thead>
-                    <tr>
-                        <th>Tool</th>
-                        <th>Issue</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="https://github.com/schemathesis/schemathesis" target="_blank" rel="noreferrer" class="paper-link">Schemathesis</a></td>
-                        <td><a href="https://github.com/schemathesis/schemathesis/issues/3377" target="_blank" rel="noreferrer" class="paper-link">KeyError: 'operationId' internal crash during stateful link resolution on OpenAPI 3.1.0 specs</a></td>
-                        <td><span class="status-badge status-fixed">Fixed</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://github.com/selab-gatech/autoresttest" target="_blank" rel="noreferrer" class="paper-link">AutoRestTest</a></td>
-                        <td><a href="https://github.com/selab-gatech/autoresttest/issues/34" target="_blank" rel="noreferrer" class="paper-link">KeyError: 'application/xml' crash in mutate_values on converted specs</a></td>
-                        <td><span class="status-badge status-fixed">Fixed</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://github.com/selab-gatech/autoresttest" target="_blank" rel="noreferrer" class="paper-link">AutoRestTest</a></td>
-                        <td><a href="https://github.com/selab-gatech/autoresttest/issues/36" target="_blank" rel="noreferrer" class="paper-link">Graph init hangs indefinitely on large specs</a></td>
-                        <td><span class="status-badge status-acknowledged">Acknowledged</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://github.com/selab-gatech/autoresttest" target="_blank" rel="noreferrer" class="paper-link">AutoRestTest</a></td>
-                        <td><a href="https://github.com/selab-gatech/autoresttest/issues/31" target="_blank" rel="noreferrer" class="paper-link">Value table generation stuck 1hr+ with no output on Podman spec</a></td>
-                        <td><span class="status-badge status-acknowledged">Acknowledged</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://github.com/selab-gatech/autoresttest" target="_blank" rel="noreferrer" class="paper-link">AutoRestTest</a></td>
-                        <td><a href="https://github.com/selab-gatech/autoresttest/issues/30" target="_blank" rel="noreferrer" class="paper-link">No support for custom API key headers</a></td>
-                        <td><span class="status-badge status-feature">Feature added</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://github.com/WebFuzzing/EvoMaster" target="_blank" rel="noreferrer" class="paper-link">EvoMaster</a></td>
-                        <td><a href="https://github.com/WebFuzzing/EvoMaster/issues/1400" target="_blank" rel="noreferrer" class="paper-link">IllegalArgumentException crash during Dolibarr API testing</a></td>
-                        <td><span class="status-badge status-reported">Reported</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="paper" class="section">
-        <p class="eyebrow">Publications</p>
-        <h2 class="h2">Research & Publications</h2>
-
-        <div class="card paper-list">
-            <div class="paper-item">
-                <h3 class="paper-title">
-                    <i class="fa-solid fa-file-lines"></i>
-                    Defects4REST: A Benchmark of Real-World Defects to Enable Controlled Testing and Debugging Studies for REST APIs
-                </h3>
-                <p class="muted">ICSE 2026 (Research Track) - First Author</p>
-                <p class="muted">Role: Led benchmark design/implementation, built deployment + replication tooling, and ran empirical evaluation.</p>
-                <div class="paper-links">
-                    <a href="https://conf.researchr.org/details/icse-2026/icse-2026-research-track/259/Defects4REST-A-Benchmark-of-Real-World-Defects-to-Enable-Controlled-Testing-and-Debu" target="_blank" class="paper-link" rel="noreferrer">
-                        <i class="fa-solid fa-file-lines"></i> Publication
-                    </a>
-                    <a href="https://github.com/ANSWER-OSU/Defects4REST" target="_blank" class="paper-link" rel="noreferrer">
-                        <i class="fa-brands fa-github"></i> Benchmark
-                    </a>
-                    <a href="https://github.com/ANSWER-OSU/Defects4REST-ReplicationPackage" target="_blank" class="paper-link" rel="noreferrer">
-                        <i class="fa-brands fa-github"></i> Replication Package
-                    </a>
+            <p class="hero-comment"><span class="c-comment" id="heroGreeting"></span></p>
+            <h1 class="hero-name" id="heroName"></h1>
+            <div class="hero-tag">
+              &lt;<span class="c-orange" id="heroRole"></span> /&gt;
+            </div>
+            <p class="hero-bio" id="heroBio"></p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn-primary" data-scroll="contact">./contact.exe</a>
+              <a href="#projects" class="btn-ghost" data-scroll="projects">ls ~/projects</a>
+            </div>
+          </div>
+          <div class="hero-right">
+            <div class="code-window">
+              <div class="code-titlebar">
+                <div class="code-dots">
+                  <span class="cdot"></span><span class="cdot"></span><span class="cdot"></span>
                 </div>
-                <p class="muted" style="margin-top:0.5rem"><strong>My Contribution:</strong> Led benchmark design and implementation end-to-end — containerized 16 real-world REST API services (buggy + patched) with Docker, built the CLI deployment tooling, authored the replication package, and ran 600+ hours of HPC testing campaigns to empirically evaluate four automated testing tools across 110 defects.</p>
+                <span class="code-filename">profile.ts</span>
+              </div>
+              <pre class="code-block"><span class="c-keyword">interface</span> <span class="c-type">Developer</span> <span class="c-punct">{</span>
+  name<span class="c-punct">:</span>           <span class="c-type">string</span><span class="c-punct">;</span>
+  role<span class="c-punct">:</span>           <span class="c-type">string</span><span class="c-punct">;</span>
+  location<span class="c-punct">:</span>       <span class="c-type">string</span><span class="c-punct">;</span>
+  focus<span class="c-punct">:</span>          <span class="c-type">string</span><span class="c-punct">[];</span>
+  currentProject<span class="c-punct">:</span> <span class="c-type">string</span><span class="c-punct">;</span>
+<span class="c-punct">}</span>
+
+<span class="c-keyword">const</span> <span class="c-var">rahil</span><span class="c-punct">:</span> <span class="c-type">Developer</span> <span class="c-punct">=</span> <span class="c-punct">{</span>
+  name<span class="c-punct">:</span>           <span class="c-string">"Rahil Mehta"</span><span class="c-punct">,</span>
+  role<span class="c-punct">:</span>           <span class="c-string">"Software Engineer"</span><span class="c-punct">,</span>
+  location<span class="c-punct">:</span>       <span class="c-string">"Corvallis, OR"</span><span class="c-punct">,</span>
+  focus<span class="c-punct">:</span> <span class="c-punct">[</span>
+    <span class="c-string">"REST API Testing"</span><span class="c-punct">,</span>
+    <span class="c-string">"Backend Systems"</span><span class="c-punct">,</span>
+    <span class="c-string">"Automation"</span>
+  <span class="c-punct">],</span>
+  currentProject<span class="c-punct">:</span> <span class="c-string">"Defects4REST @ ICSE 2026"</span>
+<span class="c-punct">};</span>
+
+<span class="c-keyword">export default</span> <span class="c-var">rahil</span><span class="c-punct">;</span></pre>
             </div>
-            <div class="paper-item">
-                <h3 class="paper-title">
-                    <i class="fa-solid fa-file-lines"></i>
-                    Uncovering Systemic and Environment Errors in Autonomous Systems Using Differential Testing
-                </h3>
-                <p class="muted">AAAI Fall Symposium 2025 (ATRACC) - Co-First Author</p>
-                <p class="muted">Role: Built env/task generation, feasibility detection, and experimental analysis.</p>
-                <div class="paper-links">
-                    <a href="https://ojs.aaai.org/index.php/AAAI-SS/article/view/36877" target="_blank" class="paper-link" rel="noreferrer">
-                        <i class="fa-solid fa-file-lines"></i> Publication
-                    </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── ABOUT: about.md ── -->
+      <section id="about" class="section">
+        <div class="section-breadcrumb">
+          <span class="breadcrumb-sep">›</span> about.md
+        </div>
+        <div class="terminal-window">
+          <div class="term-titlebar">
+            <div class="code-dots">
+              <span class="cdot"></span><span class="cdot"></span><span class="cdot"></span>
+            </div>
+            <span class="term-title">zsh — rahil@portfolio:~</span>
+          </div>
+          <div class="term-body">
+            <!-- populated by renderAbout() from PORTFOLIO.about in data.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SKILLS: skills.json ── -->
+      <section id="skills" class="section">
+        <div class="section-breadcrumb">
+          <span class="breadcrumb-sep">›</span> skills.json
+        </div>
+        <p class="c-comment section-preamble">// skills.json — full technology stack</p>
+        <div class="skills-container">
+          <!-- populated by renderSkills() from PORTFOLIO.skills in data.js -->
+        </div>
+      </section>
+
+      <!-- ── EXPERIENCE: experience.git ── -->
+      <section id="experience" class="section">
+        <div class="section-breadcrumb">
+          <span class="breadcrumb-sep">›</span> experience.git
+        </div>
+        <p class="c-comment section-preamble">$ git log --stat --oneline --graph</p>
+        <div class="git-log" id="gitLog"></div>
+      </section>
+
+      <!-- ── PROJECTS: projects/ ── -->
+      <section id="projects" class="section">
+        <div class="section-breadcrumb">
+          <span class="breadcrumb-sep">›</span> projects/
+        </div>
+        <p class="c-comment section-preamble">$ ls -la ~/projects</p>
+        <div class="ls-meta">total 5 &nbsp;·&nbsp; drwxr-xr-x &nbsp;rahil &nbsp;staff &nbsp;2025</div>
+        <div class="project-cards" id="projectCards"></div>
+      </section>
+
+      <!-- ── OSS: contributions.ts ── -->
+      <section id="oss" class="section">
+        <div class="section-breadcrumb">
+          <span class="breadcrumb-sep">›</span> contributions.ts
+        </div>
+        <p class="c-comment section-preamble">// Open Source — bugs reported during Defects4REST empirical evaluation</p>
+        <div class="oss-table-wrap">
+          <table class="oss-table">
+            <thead>
+              <tr>
+                <th>Tool</th>
+                <th>Issue</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- populated by renderOSS() from PORTFOLIO.oss in data.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── PUBLICATIONS: publications.md ── -->
+      <section id="publications" class="section">
+        <div class="section-breadcrumb">
+          <span class="breadcrumb-sep">›</span> publications.md
+        </div>
+        <p class="c-comment section-preamble">// Research & Publications</p>
+        <div class="pub-list">
+          <!-- populated by renderPublications() from PORTFOLIO.publications in data.js -->
+        </div>
+      </section>
+
+      <!-- ── SNAPSHOTS: snapshots/ ── -->
+      <section id="snapshots" class="section">
+        <div class="section-breadcrumb">
+          <span class="breadcrumb-sep">›</span> snapshots/
+        </div>
+        <p class="c-comment section-preamble">$ ls -la ~/snapshots —— captured through my lens</p>
+        <div class="snapshots-grid" id="snapshotsGrid">
+          <div class="snapshots-empty" id="snapshotsEmpty" style="display:none">
+            <i class="fa-solid fa-camera"></i>
+            <p>Drop photos into <span class="snap-code">capture_photos/</span> — they'll appear here automatically.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+        <!-- fixed controls — always visible even when scrolling tall images -->
+        <button class="lightbox-close"   id="lightboxClose" aria-label="Close">×</button>
+        <button class="lightbox-prev"    id="lightboxPrev"  aria-label="Previous">&#8249;</button>
+        <button class="lightbox-next"    id="lightboxNext"  aria-label="Next">&#8250;</button>
+        <div class="lightbox-counter"    id="lightboxCounter"></div>
+        <!-- scrollable image area -->
+        <div class="lightbox-inner">
+          <div class="lightbox-img-wrap">
+            <img src="" alt="" class="lightbox-img" id="lightboxImg" />
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CONTACT: contact.json ── -->
+      <section id="contact" class="section">
+        <div class="section-breadcrumb">
+          <span class="breadcrumb-sep">›</span> contact.json
+        </div>
+        <p class="c-comment section-preamble">$ ./contact.exe — running...</p>
+        <div class="contact-layout">
+
+          <div class="contact-json-panel">
+            <div class="code-window">
+              <div class="code-titlebar">
+                <div class="code-dots">
+                  <span class="cdot"></span><span class="cdot"></span><span class="cdot"></span>
                 </div>
+                <span class="code-filename">contact.json</span>
+              </div>
+              <div class="contact-json-body">
+                <!-- populated by renderContact() from PORTFOLIO.contact in data.js -->
+              </div>
             </div>
-        </div>
-    </section>
-    <section id="contact" class="section">
-        <p class="eyebrow">Contact</p>
-        <div class="card contact-icons">
-            <a href="mailto:rahilpiyushmehta@hotmail.com" class="contact-icon email" target="_blank">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/Mehta-Rahil" class="contact-icon linkedin" target="_blank" rel="noreferrer">
-                <i class="fa-brands fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/rahilmehta-dev" class="contact-icon github" target="_blank" rel="noreferrer">
-                <i class="fa-brands fa-github"></i>
-            </a>
-            <span class="contact-icon location">
-      <i class="fa-solid fa-location-dot"></i>
-    </span>
-        </div>
-    </section>
-</main>
+          </div>
 
-<footer class="site-footer">
-    <p>© <span id="year"></span> Rahil Mehta</p>
-</footer>
+          <div class="contact-form-panel">
+            <div class="code-window">
+              <div class="code-titlebar">
+                <div class="code-dots">
+                  <span class="cdot"></span><span class="cdot"></span><span class="cdot"></span>
+                </div>
+                <span class="code-filename">new_message.mail</span>
+              </div>
+              <form class="contact-form" id="contactForm">
+                <div class="form-field">
+                  <label class="form-label"><span class="j-key">"from"</span><span class="j-colon">:</span></label>
+                  <input type="text" name="name" class="form-input" placeholder="Your name" required />
+                </div>
+                <div class="form-field">
+                  <label class="form-label"><span class="j-key">"email"</span><span class="j-colon">:</span></label>
+                  <input type="email" name="email" class="form-input" placeholder="your@email.com" required />
+                </div>
+                <div class="form-field">
+                  <label class="form-label"><span class="j-key">"subject"</span><span class="j-colon">:</span></label>
+                  <input type="text" name="subject" class="form-input" placeholder="What's this about?" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label"><span class="j-key">"message"</span><span class="j-colon">:</span></label>
+                  <textarea name="message" class="form-textarea" placeholder="Your message..." rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary form-submit">
+                  <i class="fa-solid fa-paper-plane"></i> send()
+                </button>
+                <div class="form-feedback" id="formFeedback"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <div class="editor-footer">
+        <span>© <span id="year"></span> Rahil Mehta</span>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ── Status Bar ── -->
+  <footer class="status-bar">
+    <div class="status-left">
+      <span class="status-item status-branch">
+        <i class="fa-solid fa-code-branch"></i> main
+      </span>
+      <span class="status-item" id="statusErrors">
+        <i class="fa-solid fa-check"></i> 0 errors
+      </span>
+    </div>
+    <div class="status-right">
+      <span class="status-item" id="statusFile">main.ts</span>
+      <span class="status-item" id="statusLang">TypeScript</span>
+      <span class="status-item">UTF-8</span>
+      <span class="status-item">Spaces: 2</span>
+    </div>
+  </footer>
+
+</div>
+<script src="data.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

@@ -1,286 +1,510 @@
+/* ── Section metadata for navigation ── */
+const sectionMeta = {
+  hero:         { file: 'main.ts',          lang: 'TypeScript' },
+  about:        { file: 'about.md',         lang: 'Markdown' },
+  skills:       { file: 'skills.json',      lang: 'JSON' },
+  experience:   { file: 'experience.git',   lang: 'Git Log' },
+  projects:     { file: 'projects/',        lang: 'Shell' },
+  oss:          { file: 'contributions.ts', lang: 'TypeScript' },
+  publications: { file: 'publications.md',  lang: 'Markdown' },
+  snapshots:    { file: 'snapshots/',       lang: 'RAW Images' },
+  contact:      { file: 'contact.json',     lang: 'JSON' }
+};
+
+let lightboxIndex = 0;
+
+/* ── Render: hero ── */
+function renderHero() {
+  const p = PORTFOLIO;
+  ['heroAvatar', 'sidebarAvatar'].forEach(id => {
+    const img = document.getElementById(id);
+    if (img) { img.src = p.avatar; img.alt = p.name; }
+  });
+  const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+  set('heroGreeting', p.greeting);
+  set('heroName', p.name);
+  set('heroRole', p.role);
+  set('heroBio', p.bio);
+  const resumeLink = document.querySelector('.resume-btn');
+  if (resumeLink) resumeLink.href = p.resume;
+}
+
+/* ── Render: about terminal ── */
+function renderAbout() {
+  const a = PORTFOLIO.about;
+  const e = a.education;
+  const body = document.querySelector('#about .term-body');
+  if (!body) return;
+  body.innerHTML = `
+    <div class="term-block">
+      <div class="term-line">
+        <span class="term-prompt">➜</span>
+        <span class="term-path">~</span>
+        <span class="term-cmd">whoami</span>
+      </div>
+      <div class="term-output"><p>${a.whoami}</p></div>
+    </div>
+    <div class="term-block">
+      <div class="term-line">
+        <span class="term-prompt">➜</span>
+        <span class="term-path">~</span>
+        <span class="term-cmd">cat mission.txt</span>
+      </div>
+      <div class="term-output"><p>${a.mission}</p></div>
+    </div>
+    <div class="term-block">
+      <div class="term-line">
+        <span class="term-prompt">➜</span>
+        <span class="term-path">~</span>
+        <span class="term-cmd">cat education.json</span>
+      </div>
+      <div class="term-output">
+        <div class="inline-json">
+          <span class="j-brace">{</span><br />
+          &nbsp;&nbsp;<span class="j-key">"degree"</span><span class="j-colon">:</span> <span class="j-str">"${e.degree}"</span><span class="j-comma">,</span><br />
+          &nbsp;&nbsp;<span class="j-key">"school"</span><span class="j-colon">:</span> <span class="j-str">"${e.school}"</span><span class="j-comma">,</span><br />
+          &nbsp;&nbsp;<span class="j-key">"status"</span><span class="j-colon">:</span> <span class="j-str">"${e.status}"</span><span class="j-comma">,</span><br />
+          &nbsp;&nbsp;<span class="j-key">"gpa"</span><span class="j-colon">:</span>    <span class="j-str">"${e.gpa}"</span><br />
+          <span class="j-brace">}</span>
+        </div>
+      </div>
+    </div>
+    <div class="term-line">
+      <span class="term-prompt">➜</span>
+      <span class="term-path">~</span>
+      <span class="cursor-block blink">▋</span>
+    </div>
+  `;
+}
+
+/* ── Render: skills ── */
+function renderSkills() {
+  const el = document.querySelector('#skills .skills-container');
+  if (!el) return;
+  el.innerHTML = PORTFOLIO.skills.map((group, gi, arr) => {
+    const isLast = gi === arr.length - 1;
+    return `
+      <div class="skill-group">
+        <div class="skill-group-label"><span class="j-key">"${group.key}"</span><span class="j-colon">:</span> <span class="j-brace">[</span></div>
+        <div class="skill-badges">
+          ${group.items.map(item => `<span class="skill-badge">${item}</span>`).join('\n          ')}
+        </div>
+        <div class="skill-close"><span class="j-brace">]</span>${isLast ? '' : '<span class="j-comma">,</span>'}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ── Render: git log ── */
+function renderGitLog() {
+  const el = document.getElementById('gitLog');
+  if (!el) return;
+  el.innerHTML = PORTFOLIO.experience.map(xp => `
+    <div class="git-commit">
+      <div class="git-graph">
+        <div class="git-node"></div>
+        <div class="git-line"></div>
+      </div>
+      <div class="git-content">
+        <div class="git-header">
+          <span class="git-hash">${xp.hash}</span>
+          <span class="git-title">${xp.title}</span>
+          <span class="git-period">${xp.period}</span>
+        </div>
+        <div class="git-company">@ ${xp.company}</div>
+        <div class="git-stat">
+          ${xp.bullets.map(b => `
+            <div class="git-stat-line">
+              <span class="git-plus">+</span>
+              <span>${b}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="git-tech-row">
+          ${xp.tech.map(t => `<span class="git-tech">${t}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ── Render: project cards ── */
+function renderProjects() {
+  const el = document.getElementById('projectCards');
+  if (!el) return;
+  el.innerHTML = PORTFOLIO.projects.map(p => `
+    <div class="project-card">
+      <div class="project-card-header">
+        <i class="fa-solid fa-folder-open project-icon"></i>
+        <span class="project-name">${p.name}/</span>
+        <span class="project-year">${p.year}</span>
+      </div>
+      <div class="project-card-body">
+        <p class="project-desc">${p.desc}</p>
+        <div class="project-tech-row">
+          ${p.tech.map(t => `<span class="project-tech">${t}</span>`).join('')}
+        </div>
+        <div class="project-links">
+          ${p.github ? `<a href="${p.github}" target="_blank" rel="noreferrer" class="project-link"><i class="fa-brands fa-github"></i> GitHub</a>` : ''}
+          ${p.live   ? `<a href="${p.live}"   target="_blank" rel="noreferrer" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ── Render: OSS contributions ── */
+function renderOSS() {
+  const tbody = document.querySelector('#oss .oss-table tbody');
+  if (!tbody) return;
+  tbody.innerHTML = PORTFOLIO.oss.map(o => `
+    <tr>
+      <td><a href="${o.toolUrl}" target="_blank" rel="noreferrer" class="oss-link">${o.tool}</a></td>
+      <td><a href="${o.issueUrl}" target="_blank" rel="noreferrer" class="oss-link">${o.issue}</a></td>
+      <td><span class="status-badge status-${o.status}">${o.statusLabel}</span></td>
+    </tr>
+  `).join('');
+}
+
+/* ── Render: publications ── */
+function renderPublications() {
+  const el = document.querySelector('#publications .pub-list');
+  if (!el) return;
+  el.innerHTML = PORTFOLIO.publications.map(pub => `
+    <div class="pub-card">
+      <div class="pub-venue">
+        <i class="fa-solid fa-award pub-award"></i>
+        ${pub.venue}
+      </div>
+      <h3 class="pub-title">${pub.title}</h3>
+      <p class="pub-role">Role: ${pub.role}</p>
+      ${pub.contribution ? `<p class="pub-contribution"><strong>My Contribution:</strong> ${pub.contribution}</p>` : ''}
+      <div class="pub-links">
+        ${pub.links.map(l => `
+          <a href="${l.url}" target="_blank" rel="noreferrer" class="pub-link">
+            <i class="${l.icon}"></i> ${l.label}
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ── Render: contact JSON panel ── */
+function renderContact() {
+  const c = PORTFOLIO.contact;
+  const body = document.querySelector('#contact .contact-json-body');
+  if (!body) return;
+
+  const socialLines = c.social.map((s, i, arr) => {
+    const comma = i < arr.length - 1 ? '<span class="j-comma">,</span>' : '';
+    return `&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-key">"${s.key}"</span><span class="j-colon">:</span> <span class="j-str">"<a href='${s.url}' target='_blank' rel='noreferrer' class='j-link'>${s.label}</a>"</span>${comma}<br />`;
+  }).join('');
+
+  body.innerHTML = `
+    <div class="inline-json">
+      <span class="j-brace">{</span><br />
+      &nbsp;&nbsp;<span class="j-key">"name"</span><span class="j-colon">:</span> <span class="j-str">"${PORTFOLIO.name}"</span><span class="j-comma">,</span><br />
+      &nbsp;&nbsp;<span class="j-key">"email"</span><span class="j-colon">:</span> <span class="j-str">"<a href='mailto:${c.email}' class='j-link'>${c.email}</a>"</span><span class="j-comma">,</span><br />
+      &nbsp;&nbsp;<span class="j-key">"location"</span><span class="j-colon">:</span> <span class="j-str">"${c.location}"</span><span class="j-comma">,</span><br />
+      &nbsp;&nbsp;<span class="j-key">"social"</span><span class="j-colon">:</span> <span class="j-brace">{</span><br />
+      ${socialLines}
+      &nbsp;&nbsp;<span class="j-brace">}</span><span class="j-comma">,</span><br />
+      &nbsp;&nbsp;<span class="j-key">"availability"</span><span class="j-colon">:</span> <span class="j-str">"${c.availability}"</span><br />
+      <span class="j-brace">}</span>
+    </div>
+  `;
+}
+
+/* ── Snapshots ── */
+function loadSnapshots() {
+  const grid  = document.getElementById('snapshotsGrid');
+  const empty = document.getElementById('snapshotsEmpty');
+  if (!grid) return;
+
+  const photos = PORTFOLIO.snapshots.filter(p => p.src);
+
+  if (!photos.length) {
+    if (empty) empty.style.display = 'flex';
+    return;
+  }
+
+  grid.innerHTML = photos.map((p, i) => `
+    <div class="snap-card" data-index="${i}">
+      <img
+        src="${p.src}"
+        alt="${p.caption || 'snapshot ' + (i + 1)}"
+        loading="lazy"
+      />
+      <div class="snap-overlay">
+        ${p.caption ? `<span class="snap-caption">${p.caption}</span>` : ''}
+      </div>
+      <span class="snap-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.snap-card').forEach(card => {
+    card.addEventListener('click', () => openLightbox(+card.dataset.index));
+  });
+}
+
+function openLightbox(index) {
+  lightboxIndex = index;
+  const lb = document.getElementById('lightbox');
+  if (lb) lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  updateLightbox();
+}
+
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  if (lb) lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function updateLightbox() {
+  const photos  = PORTFOLIO.snapshots.filter(p => p.src);
+  const p       = photos[lightboxIndex];
+  const img     = document.getElementById('lightboxImg');
+  const caption = document.getElementById('lightboxCaption');
+  const counter = document.getElementById('lightboxCounter');
+  const prev    = document.getElementById('lightboxPrev');
+  const next    = document.getElementById('lightboxNext');
+  if (img)     { img.src = p.src; img.alt = p.caption || ''; }
+  if (caption)   caption.textContent = p.caption || '';
+  if (counter)   counter.textContent = `${lightboxIndex + 1} / ${photos.length}`;
+  if (prev)      prev.disabled  = lightboxIndex === 0;
+  if (next)      next.disabled  = lightboxIndex === photos.length - 1;
+}
+
+function setupLightbox() {
+  document.getElementById('lightboxClose')?.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev')?.addEventListener('click', () => {
+    if (lightboxIndex > 0) { lightboxIndex--; updateLightbox(); }
+  });
+  document.getElementById('lightboxNext')?.addEventListener('click', () => {
+    const photos = PORTFOLIO.snapshots.filter(p => p.src);
+    if (lightboxIndex < photos.length - 1) { lightboxIndex++; updateLightbox(); }
+  });
+  document.getElementById('lightbox')?.addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (!lb?.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  { if (lightboxIndex > 0) { lightboxIndex--; updateLightbox(); } }
+    if (e.key === 'ArrowRight') {
+      const photos = PORTFOLIO.snapshots.filter(p => p.src);
+      if (lightboxIndex < photos.length - 1) { lightboxIndex++; updateLightbox(); }
+    }
+  });
+}
+
+/* ── Active section tracking ── */
+function setActiveSection(id) {
+  document.querySelectorAll('.tree-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.section === id);
+  });
+  document.querySelectorAll('.tab').forEach(el => {
+    el.classList.toggle('active', el.dataset.section === id);
+  });
+  const meta = sectionMeta[id];
+  if (meta) {
+    const statusFile = document.getElementById('statusFile');
+    const statusLang = document.getElementById('statusLang');
+    if (statusFile) statusFile.textContent = meta.file;
+    if (statusLang) statusLang.textContent = meta.lang;
+  }
+}
+
+/* ── Scroll spy via IntersectionObserver ── */
+function setupScrollSpy() {
+  const sections = document.querySelectorAll('.section[id]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActiveSection(entry.target.id);
+    });
+  }, {
+    root: document.getElementById('editorArea'),
+    rootMargin: '0px 0px -60% 0px',
+    threshold: 0
+  });
+  sections.forEach(s => observer.observe(s));
+}
+
+/* ── Smooth scroll to section ── */
+function scrollToSection(id) {
+  const target = document.getElementById(id);
+  const area   = document.getElementById('editorArea');
+  if (target && area) {
+    area.scrollTo({ top: target.offsetTop - 10, behavior: 'smooth' });
+  }
+}
+
+/* ── Navigation click handlers ── */
+function setupNavigation() {
+  document.querySelectorAll('.tree-item[data-section]').forEach(el => {
+    el.addEventListener('click', () => {
+      scrollToSection(el.dataset.section);
+      closeSidebar();
+    });
+  });
+  document.querySelectorAll('.tab[data-section]').forEach(el => {
+    el.addEventListener('click', () => scrollToSection(el.dataset.section));
+  });
+  document.querySelectorAll('[data-scroll]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      scrollToSection(el.dataset.scroll);
+    });
+  });
+}
+
+/* ── Mobile sidebar ── */
+function openSidebar() {
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebarOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function setupSidebar() {
+  document.getElementById('sidebarToggle').addEventListener('click', openSidebar);
+  document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
+  document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
+}
+
+/* ── Stagger helper ── */
+function staggerChildren(section) {
+  section.querySelectorAll('.skill-badge').forEach((el, i) => {
+    el.style.animationDelay = `${0.05 + i * 0.045}s`;
+  });
+  section.querySelectorAll('.git-commit').forEach((el, i) => {
+    el.style.animationDelay = `${0.05 + i * 0.1}s`;
+  });
+  section.querySelectorAll('.project-card').forEach((el, i) => {
+    el.style.animationDelay = `${0.05 + i * 0.08}s`;
+  });
+  section.querySelectorAll('.oss-table tbody tr').forEach((el, i) => {
+    el.style.animationDelay = `${0.05 + i * 0.06}s`;
+  });
+  section.querySelectorAll('.pub-card').forEach((el, i) => {
+    el.style.animationDelay = `${0.05 + i * 0.1}s`;
+  });
+}
+
+/* ── Section fade-in observer ── */
+function setupFadeIn() {
+  document.getElementById('hero')?.classList.add('visible');
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        staggerChildren(entry.target);
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: document.getElementById('editorArea'),
+    threshold: 0,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.section:not(#hero)').forEach(s => io.observe(s));
+}
+
+/* ── Contact form ── */
+function setupContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name    = data.get('name')    || '';
+    const email   = data.get('email')   || '';
+    const subject = data.get('subject') || 'Portfolio Contact';
+    const message = data.get('message') || '';
+    const body = `From: ${name} (${email})\n\n${message}`;
+    window.open(
+      `mailto:${PORTFOLIO.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      '_blank'
+    );
+    const feedback = document.getElementById('formFeedback');
+    if (feedback) {
+      feedback.textContent = '✓ Opening mail client...';
+      setTimeout(() => { feedback.textContent = ''; }, 4000);
+    }
+  });
+}
+
+/* ── Terminal boot animation ── */
+function runBootAnimation() {
+  const firstName = PORTFOLIO.name.split(' ')[0].toLowerCase();
+  const lines = [
+    { text: '> Initializing portfolio v2.0.0...', cls: 'boot-dim', delay: 0 },
+    { text: '> Loading modules...',               cls: 'boot-dim', delay: 300 },
+    { text: '> [████████████████████] 100%',      cls: 'boot-bar', delay: 700 },
+    { text: '> Compiling TypeScript... done.',    cls: 'boot-ok',  delay: 1100 },
+    { text: '> Build successful. No errors.',     cls: 'boot-ok',  delay: 1500 },
+    { text: `> Welcome, ${firstName}@portfolio ~`, cls: 'boot-ok', delay: 1900 }
+  ];
+
+  const bootDiv   = document.getElementById('terminalBoot');
+  const container = document.getElementById('bootLines');
+  const content   = document.getElementById('heroContent');
+  const codePanel = document.getElementById('heroCode');
+  if (!container) return;
+
+  lines.forEach(({ text, cls, delay }) => {
+    setTimeout(() => {
+      const p = document.createElement('p');
+      p.className = cls;
+      p.textContent = text;
+      container.appendChild(p);
+    }, delay);
+  });
+
+  const totalDelay = lines[lines.length - 1].delay + 600;
+  setTimeout(() => {
+    if (bootDiv) bootDiv.style.display = 'none';
+    if (content) {
+      content.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      content.style.opacity    = '1';
+      content.style.transform  = 'translateY(0)';
+    }
+    if (codePanel) {
+      codePanel.style.transition = 'opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s';
+      codePanel.style.opacity    = '1';
+      codePanel.style.transform  = 'translateY(0)';
+    }
+  }, totalDelay);
+}
+
+/* ── Year ── */
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Optional: hook resume button to your PDF path
-const resumeBtn = document.getElementById('resumeBtn');
-if (resumeBtn) {
-    resumeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        // Replace with your actual file path
-        window.location.href = '/documents/resume.pdf';
-    });
-}
-
-
-const experiences = [
-    {
-        title: 'Graduate Research Assistant',
-        company: 'Oregon State University',
-        period: 'May 2025 – Present',
-        bullets: [
-            'Led development of Defects4REST (ICSE\'26), enabling reproducible deployment/testing of real-world REST API defects; containerized 16 services (buggy + patched) with Docker.',
-            'Ran 600+ hours of large-scale REST testing campaigns on an HPC cluster using Bash/Python with Schemathesis, RESTler, EvoMaster, and AutoRestTest, executing millions of requests.',
-            'Triaged failures and quantified results by mining logs/HAR/test reports to compare tool effectiveness.'
-        ],
-        tech: ['Python', 'Bash', 'Docker', 'HPC', 'Schemathesis', 'RESTler', 'EvoMaster', 'AutoRestTest']
-    },
-    {
-        title: 'Graduate Teaching Assistant',
-        company: 'Oregon State University',
-        period: 'Sept 2024 – Present',
-        bullets: [
-            'Graded assignments with strict adherence to the rubric, maintaining fairness and consistency for all students.',
-            'Mentored students on CI/CD workflows, code reviews, and debugging during weekly office hours, helping them deliver more reliable projects.'
-        ],
-        tech: ['Git', 'GitHub', 'CI/CD', 'Code Review', 'Debugging']
-    },
-    {
-        title: 'Software Engineer',
-        company: 'Nerve Solutions (Startup)',
-        period: 'Feb 2023 – Aug 2023',
-        bullets: [
-            'Designed and implemented a high-throughput .NET alert engine processing 250K+ alerts/second, incorporating user preferences, alert priority, and system load.',
-            'Cut infrastructure costs by 33% by replacing the legacy alert routing logic with a more CPU- and memory-efficient algorithm.',
-            'Improved system scalability and reliability by adding load balancing, structured logging, and automatic failover.',
-            'Built a continuous backup pipeline and a real-time monitoring tool with Slack and email alerts, reducing MTTR by 50%.'
-        ],
-        tech: ['.NET', 'C#', 'SQL', 'MongoDB', 'REST APIs', 'Slack API']
-    },
-    {
-        title: 'Programmer',
-        company: 'Acty System India (Subsidiary of Acty System Japan)',
-        period: 'May 2022 – Nov 2022',
-        bullets: [
-            'Built a console application to filter large text files using dynamically generated commands parsed from XML configurations.',
-            'Developed a Windows application for real-time, flicker-free 2D graphing with customizable features (slopes, ranges, grid, tooltips) using double buffering and no external libraries.',
-            'Implemented core modules (login, password reset, CRUD operations) for an internal Employee Management System, improving accessibility and data management for HR and admin staff.'
-        ],
-        tech: ['.NET Framework', 'Windows Forms', 'MSSQL', 'Entity Framework', 'C#']
-    }
-];
-
-
-const xpList = document.getElementById('xpList');
-const xpDetail = document.getElementById('xpDetail');
-
-function renderList(){
-    xpList.innerHTML = '';
-    experiences.forEach((xp, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'xp-item';
-        btn.innerHTML = `<h4>${xp.title}</h4><div class="sub">${xp.company}</div>`;
-        btn.addEventListener('click', () => selectXP(i));
-        xpList.appendChild(btn);
-    });
-}
-
-function selectXP(i){
-    const nodes = xpList.querySelectorAll('.xp-item');
-    nodes.forEach(n => n.classList.remove('active'));
-    nodes[i].classList.add('active');
-
-    const xp = experiences[i];
-    xpDetail.innerHTML = `
-    <div class="header">
-      <h3 class="title">${xp.title}</h3>
-      <div class="meta">${xp.period}</div>
-    </div>
-    <div class="muted">${xp.company}</div>
-    <div class="hr"></div>
-    <p class="eyebrow" style="margin-top:0">Details:</p>
-    <ul class="tight">${xp.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
-    ${xp.projects?.length ? `<p class="eyebrow">Projects:</p><div class="badges">${xp.projects.map(p=>`<span class='badge'>${p}</span>`).join('')}</div>` : ''}
-    ${xp.tech?.length ? `<p class="eyebrow">Technologies:</p><div class="techs">${xp.tech.map(t=>`<span class='tech'>${t}</span>`).join('')}</div>` : ''}
-  `;
-}
-
-renderList();
-selectXP(0);
-
-
-const projects = [
-    {
-        title: 'ScrollTone',
-        company: 'Self-hosted EPUB to audiobook converter',
-        period: '2025',
-        github: 'https://github.com/rahilmehta-dev/ScrollTone',
-        live: 'https://rahilmehta-dev.github.io/ScrollTone/',
-        bullets: [
-            '19 voices, multi-character speaker attribution via local LLM, runs entirely in Docker.'
-        ],
-        tech: ['Python', 'FastAPI', 'Kokoro TTS', 'Ollama', 'Docker']
-    },
-    {
-        title: 'ShowUp',
-        company: 'iOS habit tracker',
-        period: '2025',
-        github: 'https://github.com/rahilmehta-dev/ShowUp',
-        bullets: [
-            'Auto-completes tasks when you physically show up and stay — geofencing, Live Activity on Dynamic Island, zero manual input.'
-        ],
-        tech: ['Swift', 'SwiftUI', 'CoreLocation', 'ActivityKit', 'SwiftData']
-    },
-    {
-        title: 'FocusFeed',
-        company: 'YouTube pre-filter for Apple Silicon',
-        period: '2025',
-        github: 'https://github.com/rahilmehta-dev/FocusFeed',
-        bullets: [
-            'Pick a mood, local MLX vision model scores the top 10 videos before you watch any of them.'
-        ],
-        tech: ['Python', 'FastAPI', 'MLX', 'SSE', 'Apple Silicon']
-    },
-    {
-        title: 'mornin-cli',
-        company: 'CLI morning standup generator',
-        period: '2025',
-        github: 'https://github.com/rahilmehta-dev/mornin-cli',
-        bullets: [
-            'Generates a morning standup from your git commits using a local LLM — no cloud, no accounts.'
-        ],
-        tech: ['Python', 'Ollama', 'CLI']
-    },
-    {
-        title: 'Defects4REST',
-        company: 'REST API defect benchmark',
-        period: '2025',
-        github: 'https://github.com/ANSWER-OSU/Defects4REST',
-        bullets: [
-            'Benchmark of 110 real-world REST API defects across 12 open-source projects.',
-            'Single-command Docker deployment per defect, used in ICSE 2026 paper.'
-        ],
-        tech: ['Python', 'Docker', 'REST APIs', 'OpenAPI']
-    }
-];
-
-const projList = document.getElementById('projList');
-const projDetail = document.getElementById('projDetail');
-
-function renderProjList(){
-    projList.innerHTML = '';
-    projects.forEach((p,i)=>{
-        const btn=document.createElement('button');
-        btn.className='xp-item';
-        btn.innerHTML=`<h4>${p.title}</h4><div class='sub'>${p.company}</div>`;
-        btn.addEventListener('click',()=>selectProj(i));
-        projList.appendChild(btn);
-    });
-}
-function selectProj(i){
-    const nodes=projList.querySelectorAll('.xp-item');
-    nodes.forEach(n=>n.classList.remove('active'));
-    nodes[i].classList.add('active');
-
-    const p=projects[i];
-    projDetail.innerHTML=`
-    <div class="header"><h3 class="title">${p.title}</h3><div class="meta">${p.period}</div></div>
-    <div class="muted">${p.company}</div>
-    <div class="hr"></div>
-    <p class="eyebrow">Details:</p>
-    <ul class="tight">${p.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
-    ${p.tech?.length ? `<p class='eyebrow'>Technologies:</p><div class='techs'>${p.tech.map(t=>`<span class='tech'>${t}</span>`).join('')}</div>`:''}
-    ${(p.github || p.live) ? `<div class="paper-links" style="margin-top:1rem">${p.github ? `<a href="${p.github}" target="_blank" class="paper-link" rel="noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>` : ''}${p.live ? `<a href="${p.live}" target="_blank" class="paper-link" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site</a>` : ''}</div>` : ''}
-  `;
-}
-
-renderProjList();
-selectProj(0);
-
-// ── Life & Interests ──
-
-// Add your photos here: { src: 'img/your-photo.jpg', caption: 'Caption' }
-const photos = [
-
-];
-
-// Add your certificates here: { name: 'Cert Name', issuer: 'Issuer', date: 'Month Year', img: 'img/cert.jpg', url: 'https://...' }
-const certificates = [
-
-];
-
-// Add / edit your inspirations here
-const inspirations = [
-    {
-        name: 'Donald Knuth',
-        role: 'Computer Scientist & Author, The Art of Computer Programming',
-        quote: 'Premature optimization is the root of all evil.',
-        icon: '📚'
-    },
-    {
-        name: 'Grace Hopper',
-        role: 'Pioneer Programmer & Admiral, U.S. Navy',
-        quote: "It's easier to ask forgiveness than it is to get permission.",
-        icon: '⚓'
-    },
-    {
-        name: 'Linus Torvalds',
-        role: 'Creator of Linux & Git',
-        quote: 'Talk is cheap. Show me the code.',
-        icon: '🐧'
-    }
-];
-
-function renderPhotos() {
-    const el = document.getElementById('tab-photos');
-    if (!photos.length) {
-        el.innerHTML = `<div class="life-empty"><i class="fa-solid fa-camera"></i><span>Drop photos in <code>img/</code> and add them to the <code>photos</code> array in app.js</span></div>`;
-        return;
-    }
-    el.innerHTML = `<div class="photo-grid">${photos.map(p => `
-        <div class="photo-card">
-            <img src="${p.src}" alt="${p.caption || ''}">
-            ${p.caption ? `<div class="photo-caption">${p.caption}</div>` : ''}
-        </div>`).join('')}</div>`;
-}
-
-function renderCerts() {
-    const el = document.getElementById('tab-certs');
-    if (!certificates.length) {
-        el.innerHTML = `<div class="life-empty"><i class="fa-solid fa-certificate"></i><span>Add your certificates to the <code>certificates</code> array in app.js</span></div>`;
-        return;
-    }
-    el.innerHTML = `<div class="cert-grid">${certificates.map(c => `
-        <div class="cert-card">
-            ${c.img
-                ? `<img class="cert-thumb" src="${c.img}" alt="${c.name}">`
-                : `<div class="cert-thumb-placeholder"><i class="fa-solid fa-certificate"></i></div>`}
-            <p class="cert-name">${c.name}</p>
-            <p class="cert-issuer">${c.issuer}</p>
-            <p class="cert-date">${c.date}</p>
-            ${c.url ? `<a class="cert-link" href="${c.url}" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> View credential</a>` : ''}
-        </div>`).join('')}</div>`;
-}
-
-function renderInspo() {
-    const el = document.getElementById('tab-inspo');
-    if (!inspirations.length) {
-        el.innerHTML = `<div class="life-empty"><i class="fa-solid fa-star"></i><span>Add inspirations to the <code>inspirations</code> array in app.js</span></div>`;
-        return;
-    }
-    el.innerHTML = `<div class="inspo-grid">${inspirations.map(p => `
-        <div class="inspo-card">
-            <p class="inspo-quote">${p.quote}</p>
-            <div class="inspo-person">
-                ${p.img
-                    ? `<img class="inspo-avatar" src="${p.img}" alt="${p.name}">`
-                    : `<div class="inspo-avatar-placeholder">${p.icon || '✦'}</div>`}
-                <div class="inspo-info">
-                    <p class="inspo-name">${p.name}</p>
-                    <p class="inspo-role">${p.role}</p>
-                </div>
-            </div>
-        </div>`).join('')}</div>`;
-}
-
-renderPhotos();
-renderCerts();
-renderInspo();
-
-document.querySelectorAll('.life-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-        document.querySelectorAll('.life-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.life-panel').forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
-    });
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', () => {
+  renderHero();
+  renderAbout();
+  renderSkills();
+  renderGitLog();
+  renderProjects();
+  renderOSS();
+  renderPublications();
+  renderContact();
+  loadSnapshots();
+  setupNavigation();
+  setupScrollSpy();
+  setupFadeIn();
+  setupContactForm();
+  setupSidebar();
+  setupLightbox();
+  runBootAnimation();
 });
